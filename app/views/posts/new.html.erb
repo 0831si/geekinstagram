@@ -1,0 +1,14 @@
+<%= form_for @post do |f| %>
+    <div class="field">
+        <%= f.label :タイトル %>
+        <%= f.text_field :title, :size => 140 %>
+        <%= f.label :キャプション %>
+        <%= f.text_field :content, :size => 140 %>
+    </div>
+    <div class="field">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+    </div>    
+    <%= f.submit "投稿する" %>
+<% end %>
+<%= link_to "一覧へ", posts_path %>

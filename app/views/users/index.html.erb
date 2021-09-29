@@ -1,0 +1,10 @@
+<h1><%= link_to "トップに戻る", root_path %></h1>
+
+
+
+user一覧
+<% @users.each do |u| %>
+    <div>
+        <%= link_to u.email, user_path(u.id) %>
+    </div>
+<% end %>

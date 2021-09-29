@@ -1,0 +1,33 @@
+<%= image_tag @user.image_url, size: "250x200" if @user.image? %>
+
+<p>名前 : <%= @user.name %></p>
+<p>プロフィール : <%= @user.profile %></p>
+
+<% if current_user.id == @user.id %>
+    <%= link_to "編集する", edit_user_registration_path %>
+
+    <p>フォローされているユーザー</p>
+    <% @follower.each do |u| %>
+        <div>
+            <%= link_to u.email, user_path(u.id) %>
+        </div>
+    <% end %>
+
+    <p>フォローしているユーザー</p>
+    <% @following.each do |u| %>
+        <div>
+            <%= link_to u.email, user_path(u.id) %>
+        </div>
+    <% end %>
+
+<% end %>
+
+
+
+<h4>ユーザーの投稿一覧</h4>
+<% @user.posts.each do |t| %>
+    <%= t.user.name %>
+    <%= image_tag t.image_url, size: "250x200" if t.image? %>
+    <%= t.content %>
+    <%= t.created_at %>
+<% end %>
