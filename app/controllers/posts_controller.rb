@@ -2,7 +2,14 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create]
 
     def index
-        @posts = Post.all
+        if params[:search] == nil
+            @posts = Post.all
+        elsif params[:search] == ''
+            @posts = Post.all
+        else
+            @posts = Post.where("content LIKE ? ",'%' + params[:search] + '%')
+        end
+
     end
 
     def new

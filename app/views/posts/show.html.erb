@@ -1,4 +1,5 @@
 <div class="post">
+    <p><%= @post.user.name %></p>
     <p><%= @post.title %></p>
     <%= image_tag @post.image_url, size: "250x200" if @post.image? %>
     <p><%= @post.content %></p>
@@ -35,6 +36,12 @@
                 <%= c.user.name unless c.user.blank? %>
                 <br>
                 <%= c.body %>
+
+                <% if user_signed_in? && current_user.id == @comment.user_id %>  
+                    <%= button_to "削除する", post_comment_path(@comment.id), method: :delete %>
+                <% end %>
+    
+
             </div>
             <br>
         <% end %>
@@ -47,6 +54,7 @@
                 <% end %>
             <% end %>
         <% end %>
+
     </div>
 
 </div>

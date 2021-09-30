@@ -38,5 +38,9 @@ class User < ApplicationRecord
           self.followings.include?(other_user)
         end
 
+        # DM機能
+        has_many :messages, dependent: :destroy
+        has_many :entries, dependent: :destroy
+
         mount_uploader :image, ImageUploader
 end
